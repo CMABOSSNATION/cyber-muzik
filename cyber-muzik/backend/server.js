@@ -4,8 +4,8 @@ const mongoose = require('mongoose'); // 1. Added mongoose for DB connection
 require('dotenv').config();
 
 // 2. Critical: Ensure these paths match your folders EXACTLY (case-sensitive)
-const trackRoutes = require('./routes/tracks');
-const artistRoutes = require('./routes/artists');
+const trackroutes = require('./routes/tracks');
+const artistroutes = require('./routes/artists');
 
 const app = express();
 
@@ -17,8 +17,8 @@ app.use(express.json());
 app.get('/', (req, res) => res.send('CyberMuzik API is active'));
 
 // Routes
-app.use('/api/tracks', trackRoutes);
-app.use('/api/artists', artistRoutes);
+app.use('/api/tracks', trackroutes);
+app.use('/api/artists', artistroutes);
 
 // 3. Database Connection with Error Handling
 // If this fails, the app will now tell you WHY instead of just "Status 1"
