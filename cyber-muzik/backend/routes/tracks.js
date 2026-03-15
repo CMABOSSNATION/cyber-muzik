@@ -1,13 +1,32 @@
-const express = require('express');
-const router = express.Router();
+const mongoose = require('mongoose');
 
-// Basic route to test the music list
-router.get('/', (req, res) => {
-    res.json({
-        status: "success",
-        message: "CyberMuzik track list is ready",
-        tracks: []
-    });
+const trackSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: [true, 'Song title is required'],
+        trim: true
+    },
+    artist: {
+        type: String,
+        required: [true, 'Artist name is required'],
+        trim: true
+    },
+    audioUrl: {
+        type: String,
+        required: [true, 'Audio URL is required']
+    },
+    coverImage: {
+        type: String,
+        default: 'https://via.placeholder.com/150'
+    },
+    duration: {
+        type: String // e.g., "3:45"
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
-module.exports = router;
+module.exports = mongoose.model('Track', trackSchema);
+
