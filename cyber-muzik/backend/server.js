@@ -12,5 +12,5 @@ app.use(express.json());
 app.use('/api/tracks', trackRoutes);
 app.use('/api/artists', artistRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`CyberMuzik API running on port ${PORT}`));
