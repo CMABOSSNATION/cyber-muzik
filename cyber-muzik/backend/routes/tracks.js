@@ -14,27 +14,15 @@ app.use(cors());
 app.use(express.json());
 
 // Basic Health Check (Render needs this to see the app is "Alive")
-app.get('/', (req, res) => res.send('CyberMuzik API is active'));
+app.get('/', (req, res) => res.send('Cybconst express = require('express');
+const router = express.Router();
 
-// Routes
-app.use('/api/tracks', trackroutes);
-app.use('/api/artists', artistroutes);
-
-// 3. Database Connection with Error Handling
-// If this fails, the app will now tell you WHY instead of just "Status 1"
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => {
-        console.log('✅ Connected to MongoDB');
-        const PORT = process.env.PORT || 5000;
-        app.listen(PORT, () => console.log(`🚀 CyberMuzik API running on port ${PORT}`));
-    })
-    .catch(err => {
-        console.error('❌ Database connection failed:', err.message);
-        process.exit(1); // Force exit with info so Render logs show the error
-    });
-
-// 4. Global Safety Net for unexpected crashes
-process.on('unhandledRejection', (err) => {
-    console.log('UNHANDLED REJECTION! 💥', err.name, err.message);
-    process.exit(1);
+// 1. This handles requests to /api/tracks
+router.get('/', (req, res) => {
+    res.json({ message: "Tracks route is active and working!" });
 });
+
+// 2. Add more routes here later (e.g., router.post for adding songs)
+
+// 3. CRITICAL: Export the router so server.js can use it
+module.exports = router;
