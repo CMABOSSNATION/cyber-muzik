@@ -27,5 +27,23 @@ router.post('/add', async (req, res) => {
 });
 
 module.exports = router;
-    
+// 3. SEED ROUTE: Visit your-url.onrender.com/api/tracks/seed to add a song
+router.get('/seed', async (req, res) => {
+    try {
+        const sampleTrack = await Track.create({
+            title: "Cyber Dream",
+            artist: "Digital Ghost",
+            audioUrl: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+            coverImage: "https://via.placeholder.com/300",
+            duration: "3:45"
+        });
+        res.status(201).json({ 
+            message: "Success! First song added to CyberMuzik", 
+            data: sampleTrack 
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 
