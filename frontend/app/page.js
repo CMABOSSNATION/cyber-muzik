@@ -1,7 +1,8 @@
 import AudioPlayer from "../components/AudioPlayer";
 
 async function getTracks() {
-  const res = await fetch("http://localhost:5000/api/tracks", { cache: "no-store" });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tracks`);
+
   return res.json();
 }
 
