@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const track = require('../models/track'); // Lowercase 't'
+const track = require('../models/tracks'); // Matches your file: models/tracks.js
 
 // 1. GET all tracks from database
 router.get('/', async (req, res) => {
