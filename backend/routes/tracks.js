@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Track = require('../models/track'); // Import the Model
+const track = require('../models/track'); // Import the Model
 
 // 1. GET all tracks from database
 router.get('/', async (req, res) => {
