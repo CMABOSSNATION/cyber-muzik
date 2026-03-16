@@ -1,5 +1,6 @@
-import "../styles/globals.css"; // Make sure globals.css is inside a 'styles' folder
+import "./globals.css"; 
 import Navbar from "../components/Navbar";
+
 export const metadata = {
   title: "CyberMuzik | Future of Sound",
 };
@@ -7,11 +8,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-black text-white">
         <Navbar />
-        {children}
+        <main>{children}</main>
       </body>
     </html>
   );
 }
-
