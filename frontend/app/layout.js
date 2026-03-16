@@ -1,6 +1,5 @@
 import "..styles/globals.css)".
 import Navbar from "../components/Navbar";
-
 export const metadata = {
   title: "CyberMuzik | Future of Sound",
   description: "Download and stream the latest music.",
