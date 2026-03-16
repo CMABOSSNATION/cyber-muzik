@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const track = require('../models/track'); // Import the Model
-
+const Track = require('../models/Track'); // Notice the Capital T in both places
 // 1. GET all tracks from database
 router.get('/', async (req, res) => {
     try {
