@@ -1,4 +1,4 @@
-import AudioPlayer from "@/components/AudioPlayer";
+import AudioPlayer from "../components/AudioPlayer";
 
 async function getTracks() {
   const res = await fetch("http://localhost:5000/api/tracks", { cache: "no-store" });
