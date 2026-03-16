@@ -1,8 +1,9 @@
-import "./globals.css"; 
-import Navbar from "../components/Navbar";
+import "./globals.css"; // Fixed: Ensure this matches your file location
+import Navbar from "../components/Navbar"; // Fixed: Ensure 'components' is lowercase
 
 export const metadata = {
-  title: "CyberMuzik | Future of Sound",
+  title: "Cybermuzik",
+  description: "Your ultimate music destination",
 };
 
 export default function RootLayout({ children }) {
@@ -10,7 +11,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-black text-white">
         <Navbar />
-        <main>{children}</main>
+        <main className="min-h-screen">
+          {children}
+        </main>
       </body>
     </html>
   );
