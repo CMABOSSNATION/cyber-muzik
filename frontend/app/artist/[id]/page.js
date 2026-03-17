@@ -41,7 +41,7 @@ export default async function ArtistProfile({ params }) {
         <div className="grid gap-4">
           {tracks.length > 0 ? (
             tracks.map((track) => (
-              <AudioPlayer key={track.id} track={{ ...track, artist_name: artist.name }} />
+              <Audioplayer key={track.id} track={{ ...track, artist_name: artist.name }} />
             ))
           ) : (
             <p className="text-zinc-500 italic">No tracks uploaded yet.</p>
