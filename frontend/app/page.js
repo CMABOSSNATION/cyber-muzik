@@ -1,5 +1,5 @@
-import AudioPlayer from "../components/AudioPlayer";
 
+import AudioPlayer from "../components/Audioplayer"; 
 async function getTracks() {
   // Uses the NEXT_PUBLIC_API_URL you set in Vercel settings
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tracks`, { 
