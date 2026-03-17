@@ -2,7 +2,7 @@
 import { useState, useRef } from "react";
 import { Play, Pause, Download } from "lucide-react"; // npm install lucide-react
 
-export default function AudioPlayer({ track }) {
+export default function Audioplayer({ track }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
