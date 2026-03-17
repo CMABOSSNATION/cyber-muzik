@@ -1,4 +1,4 @@
-import Audioplayer from "../../components/Audioplayer"; // Fixed path and casing
+import AudioPlayer from "../components/Audioplayer"; 
 import { BadgeCheck } from "lucide-react";
 
 async function getArtistData(id) {
