@@ -1,6 +1,5 @@
-import AudioPlayer from "../components/Audioplayer"; 
+import AudioPlayer from "../../components/Audioplayer";
 import { BadgeCheck } from "lucide-react";
-
 async function getArtistData(id) {
   // Fixed: Replaced localhost with environment variable
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/artists/${id}`, { 
