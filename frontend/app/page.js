@@ -1,4 +1,4 @@
-import AudioPlayer from "../components/AudioPlayer";
+import Audioplayer from "../components/Audioplayer";
 async function getTracks() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tracks`, {
     cache: "no-store",
@@ -21,7 +21,7 @@ export default async function Home() {
           </div>
         ))}
       </div>
-      <AudioPlayer />
+      <Audioplayer />
     </div>
   );
   }
