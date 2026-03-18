@@ -1,4 +1,4 @@
-import AudioPlayer from "../../components/AudioPlayer"; // FIXED: relative path + lowercase 'p'
+import Audioplayer from "../../components/Audioplayer"; // FIXED: relative path + lowercase 'p'
 import { BadgeCheck } from "lucide-react";
 async function getArtistData(id) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/artists/${id}`, { 
@@ -26,7 +26,7 @@ export default async function ArtistProfile({ params }) {
       </div>
       <div className="space-y-4">
         {tracks.map((track) => (
-          <AudioPlayer key={track._id || track.id} track={{ ...track, artist_name: artist.name }} />
+          <Audioplayer key={track._id || track.id} track={{ ...track, artist_name: artist.name }} />
         ))}
       </div>
     </div>
