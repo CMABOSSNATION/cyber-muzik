@@ -1,6 +1,5 @@
-import AudioPlayer from "../../components/Audioplayer"; // FIXED: relative path + lowercase 'p'
+import AudioPlayer from "../../components/AudioPlayer"; // FIXED: relative path + lowercase 'p'
 import { BadgeCheck } from "lucide-react";
-
 async function getArtistData(id) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/artists/${id}`, { 
     cache: "no-store" 
@@ -8,7 +7,6 @@ async function getArtistData(id) {
   if (!res.ok) return null;
   return res.json();
 }
-
 export default async function ArtistProfile({ params }) {
   const data = await getArtistData(params.id);
   if (!data) return <div className="py-20 text-center">Artist not found.</div>;
