@@ -1,4 +1,4 @@
-import Audioplayer from "../../components/Audioplayer"; // FIXED: relative path + lowercase 'p'
+import Audioplayer from "../../components/Audioplayer";
 import { BadgeCheck } from "lucide-react";
 async function getArtistData(id) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/artists/${id}`, { 
