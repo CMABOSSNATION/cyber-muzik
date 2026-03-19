@@ -1,6 +1,6 @@
 const handleLike = async (trackId) => {
   const token = localStorage.getItem('token'); // Get the JWT
-  await fetch(`http://localhost:5000/api/users/like`, {
+  await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/users/like`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${token}`,
