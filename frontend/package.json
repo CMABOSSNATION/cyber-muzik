@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "dependencies": {
+  "dependencies": {"tailwindcss": "latest",
+"postcss": "latest",
+"autoprefixer": "latest"
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
