@@ -1,59 +1,29 @@
-"use client"; // This tells Next.js this page uses interactive components
-
+"use client";
 import { useState, useEffect } from "react";
-import Audioplayer from "../components/Audioplayer";
-
-// 1. The Fetcher (remains the same)
-async function getTracks() {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tracks`, {
-      cache: "no-store",
-    });
-    if (!res.ok) return [];
-    return res.json();
-  } catch (error) {
-    console.error("Fetch error:", error);
-    return [];
-  }
-}
 
 export default function Home() {
   const [tracks, setTracks] = useState([]);
-  const [isClient, setIsClient] = useState(false);
 
-  // 2. The Safety Guard
   useEffect(() => {
-    setIsClient(true); // Tell the app we are now in a browser
-    getTracks().then((data) => setTracks(data));
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tracks`)
+      .then(res => res.json())
+      .then(data => setTracks(Array.isArray(data) ? data : []))
+      .catch(err => console.error(err));
   }, []);
 
-  // 3. Prevent the "Application Error" crash
-  if (!isClient) {
-    return <div className="p-8 text-white">Loading Cyber-Muzik...</div>;
-  }
-
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold mb-6">Explore Tracks</h1>
-      
-      {/* 4. Track Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {tracks.length > 0 ? (
-          tracks.map((track) => (
-            <div key={track._id || track.id} className="bg-zinc-900 p-4 rounded-lg">
-              <img src={track.coverImage} alt={track.title} className="rounded mb-2" />
-              <h2 className="font-semibold">{track.title}</h2>
-              <p className="text-zinc-400 text-sm">{track.artist?.name}</p>
-            </div>
-          ))
-        ) : (
-          <p>No tracks found or backend is offline.</p>
-        )}
-      </div>
-
-      {/* 5. The Component that was causing the crash */}
-      <Audioplayer />
-    </div>
+    <main style={{padding:"20px", color:"white", background:"black", minHeight:"100vh"}}>
+      <h1 style={{fontSize:"2rem", marginBottom:"20px"}}>Cyber Muzik 🎵</h1>
+      {tracks.length > 0 ? (
+        tracks.map((track, i) => (
+          <div key={i} style={{padding:"10px", marginBottom:"10px", border:"1px solid #333", borderRadius:"8px"}}>
+            <p style={{fontWeight:"bold"}}>{track.title}</p>
+            <p style={{color:"#999"}}>{track.artist?.name}</p>
+          </div>
+        ))
+      ) : (
+        <p style={{color:"#666"}}>Loading tracks...</p>
+      )}
+    </main>
   );
-              }
-  
+}
