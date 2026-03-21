@@ -1,12 +1,14 @@
 "use client";
 import { useState, useRef } from "react";
 import { Play, Pause, Download } from "lucide-react"; // npm install lucide-react
-
-export default function Audioplayer({ track }) {
+ export default function Audioplayer({ track }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
 
+  if (!track) return null; // ← guard against missing prop
+
   const togglePlay = () => {
+    if (!audioRef.current) return; // ← guard against unready ref
     isPlaying ? audioRef.current.pause() : audioRef.current.play();
     setIsPlaying(!isPlaying);
   };
