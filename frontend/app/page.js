@@ -7,7 +7,7 @@ export default function Home() {
   useEffect(() => {
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tracks`)
       .then(res => res.json())
-      .then(data => setTracks(Array.isArray(data) ? data : []))
+      .then(data => setTracks(Array.isArray(data.data) ? data.data : []))
       .catch(err => console.error(err));
   }, []);
 
