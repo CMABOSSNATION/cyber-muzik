@@ -10,7 +10,7 @@ export default function ArtistPage() {
 
   useEffect(() => {
     setIsClient(true);
-    const url = "https://your-backend-url.onrender.com"; // PASTE YOUR RENDER URL HERE
+    const url = process.env.NEXT_PUBLIC_API_URL || "";
     fetch(`${url}/api/artists/${id}`)
       .then(res => res.json())
       .then(data => setArtist(data))
