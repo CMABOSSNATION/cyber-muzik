@@ -27,15 +27,15 @@ export default function UploadPage() {
       );
       const cloudData = await cloudRes.json();
 
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tracks`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          title,
-          artist_name: artistName,
-          file_url: cloudData.secure_url,
-        }),
-      });
+      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tracks/add`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    title,
+    artist: artistName,
+    audioUrl: cloudData.secure_url,
+  }),
+});
 
       setMessage("Track uploaded successfully! 🎉");
       setTitle("");
