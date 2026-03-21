@@ -6,7 +6,8 @@ const trackSchema = new mongoose.Schema({
   audioUrl: { type: String, required: true },
   coverImage: { type: String },
   album: { type: String },
-  duration: { type: String },
+  duration: { type: String },plays: { type: Number, default: 0 },
+downloads: { type: Number, default: 0 },
   createdAt: { type: Date, default: Date.now }
 });
 
