@@ -23,7 +23,7 @@ export default function Home() {
         tracks.map((track, i) => (
           <div key={i} style={{padding:"10px", marginBottom:"10px", border:"1px solid #333", borderRadius:"8px"}}>
             <p style={{fontWeight:"bold"}}>{track.title}</p>
-            <p style={{color:"#999"}}>{track.artist?.name}</p>
+            p style={{color:"#999"}}>{track.artist}</p>
           </div>
         ))
       ) : (
