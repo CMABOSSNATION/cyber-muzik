@@ -31,7 +31,9 @@ export default function ArtistPage() {
       ) : (
         <p>Loading artist details...</p>
       )}
-      <Audioplayer />
+      {Array.isArray(artist.tracks) && artist.tracks.map((track) => (
+  <Audioplayer key={track._id || track.id} track={track} />
+))}
     </div>
   );
 }
