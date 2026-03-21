@@ -43,7 +43,7 @@ function AudioPlayer({ track, isActive, onPlay }) {
       </div>
       <div style={{display:"flex", gap:"8px", flexShrink:0}}>
         <button onClick={handlePlay} style={{width:"36px", height:"36px", borderRadius:"50%", background: isActive ? "#00e5ff" : "#fff", border:"none", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.9rem"}}>
-          {isActive ? "⏸" : "▶"}
+          {isActive ? "II" : "▶️"}
         </button>
         <a href={track.audioUrl} download style={{width:"36px", height:"36px", borderRadius:"50%", background:"#1a1a1a", border:"1px solid #333", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.85rem", textDecoration:"none"}}>
           ⬇
