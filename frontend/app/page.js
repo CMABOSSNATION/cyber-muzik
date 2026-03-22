@@ -103,18 +103,18 @@ function ArtistCard({ track, isActive, onPlay, index }) {
         transition:"all 0.2s"
       }}
     >
-      {/* Artist Photo */}
-      {track.coverImage ? (
-        <img
-          src={track.coverImage}
-          alt={track.artist}
-          style={{width:"100%", height:"220px", objectFit:"cover", display:"block", transition:"transform 0.4s"}}
-        />
-      ) : (
-        <div style={{width:"100%", height:"220px", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"5rem"}}>
-          🎤
-        </div>
-      )}
+      {/* Artist Photo — uses artistCover > artistPhoto > coverImage > placeholder */}
+{(track.artistCover || track.artistPhoto || track.coverImage) ? (
+  <img
+    src={track.artistCover || track.artistPhoto || track.coverImage}
+    alt={track.artist}
+    style={{width:"100%", height:"220px", objectFit:"cover", display:"block", transition:"transform 0.4s"}}
+  />
+) : (
+  <div style={{width:"100%", height:"220px", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"5rem"}}>
+    🎤
+  </div>
+)}
 
       {/* Stats top right */}
       <div style={{position:"absolute", top:"12px", right:"12px", display:"flex", gap:"6px"}}>
