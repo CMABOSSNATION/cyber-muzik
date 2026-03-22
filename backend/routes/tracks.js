@@ -40,9 +40,13 @@ router.get('/:id', async (req, res) => {
 // ── ADD TRACK ──
 router.post('/add', protect, async (req, res) => {
   try {
+    const Artist = require('../models/Artist');
+    const artistDoc = await Artist.findById(req.artist.id);
     const newTrack = await Track.create({
       ...req.body,
-      artistId: req.artist.id
+      artistId: req.artist.id,
+      artistPhoto: artistDoc?.profilePhoto || "",
+      artistCover: artistDoc?.coverPhoto || ""
     });
     res.status(201).json({ success: true, data: newTrack });
   } catch (err) {
