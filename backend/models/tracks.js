@@ -9,7 +9,8 @@ const trackSchema = new mongoose.Schema({
   album: { type: String, default: "" },
   duration: { type: String, default: "" },
   artistPhoto: { type: String, default: "" },
-artistCover: { type: String, default: "" },plays: { type: Number, default: 0 },
+  artistCover: { type: String, default: "" },
+  plays: { type: Number, default: 0 },
   downloads: { type: Number, default: 0 },
   likes: { type: Number, default: 0 },
   dislikes: { type: Number, default: 0 },
@@ -18,4 +19,4 @@ artistCover: { type: String, default: "" },plays: { type: Number, default: 0 },
   createdAt: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('track', trackSchema);
+module.exports = mongoose.model('track
