@@ -11,7 +11,6 @@ export default function Navbar() {
         <Link href="/charts" className="px-3 py-4 text-xs font-semibold uppercase tracking-widest text-zinc-500 hover:text-white transition">Charts</Link>
         <Link href="/artists" className="px-3 py-4 text-xs font-semibold uppercase tracking-widest text-zinc-500 hover:text-white transition">Artists</Link>
         <Link href="/news" className="px-3 py-4 text-xs font-semibold uppercase tracking-widest text-zinc-500 hover:text-white transition">News</Link>
-        <Link href="/upload" className="ml-3 bg-cyan-400 text-black px-4 py-2 rounded-full text-xs font-bold hover:scale-105 transition">UPLOAD</Link>
       </div>
     </nav>
   );
