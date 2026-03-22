@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
 
 const trackRoutes = require('./routes/tracks');
 const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
 
 app.use('/api/tracks', trackRoutes);
 app.use('/api/auth', authRoutes);
