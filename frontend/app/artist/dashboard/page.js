@@ -22,18 +22,26 @@ export default function ArtistDashboard() {
   }, []);
 
   const fetchMyTracks = async (token) => {
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/tracks/artist/mytracks`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      const data = await res.json();
-      setTracks(Array.isArray(data.data) ? data.data : []);
-    } catch (err) {
-      console.error(err);
-    }
-    setLoading(false);
-  };
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/tracks/artist/mytracks`,
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+    const data = await res.json();
+    setTracks(Array.isArray(data.data) ? data.data : []);
+  } catch (err) {
+    console.error(err);
+  }
+  setLoading(false);
+};
+
+// Auto refresh every 30 seconds
+useEffect(() => {
+  const token = localStorage.getItem("token");
+  if (!token) return;
+  const interval = setInterval(() => fetchMyTracks(token), 30000);
+  return () => clearInterval(interval);
+}, []);
 
   const handleDelete = async (id) => {
     const token = localStorage.getItem("token");
