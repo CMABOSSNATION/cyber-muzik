@@ -3,14 +3,7 @@ import Navbar from "../components/Navbar";
 
 export const metadata = {
   title: "CyberMuzik",
-  description: "Stream the future",
-  manifest: "/manifest.json",
-  themeColor: "#E8640A",
-  appleWebApp: {
-    capable: true,
-    statusBarStyle: "black-translucent",
-    title: "CyberMuzik"
-  }
+  description: "Stream the future of music",
 };
 
 export default function RootLayout({ children }) {
@@ -22,12 +15,13 @@ export default function RootLayout({ children }) {
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
         <meta name="apple-mobile-web-app-title" content="CyberMuzik"/>
-        <link rel="apple-touch-icon" href="/icon-192.png"/>
+        <link rel="apple-touch-icon" href="/icon-512.png"/>
+        <meta name="mobile-web-app-capable" content="yes"/>
       </head>
       <body className="bg-black text-white">
-        <Navbar />
+        <Navbar/>
         <main className="min-h-screen">{children}</main>
       </body>
     </html>
   );
-    }
+}
