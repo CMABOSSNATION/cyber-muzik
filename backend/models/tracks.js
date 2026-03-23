@@ -19,4 +19,4 @@ const trackSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('track
+module.exports = mongoose.model('track', trackSchema);
