@@ -7,8 +7,10 @@ const giftSchema = new mongoose.Schema({
   amount: { type: Number, required: true },
   platformFee: { type: Number, required: true },
   artistAmount: { type: Number, required: true },
-  phone: { type: String, required: true },
+  senderPhone: { type: String, required: true },
+  artistPhone: { type: String, default: "" },
   message: { type: String, default: "" },
+  giftCard: { type: String, default: "" },
   status: { type: String, default: "pending" },
   createdAt: { type: Date, default: Date.now }
 });
