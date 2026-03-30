@@ -14,6 +14,7 @@ const trackSchema = new mongoose.Schema({
   country: { type: String, default: "" },
   promoted: { type: Boolean, default: false },
   promotedUntil: { type: Date, default: null },
+  gifters: [{ name: String, amount: Number }],
   plays: { type: Number, default: 0 },
   downloads: { type: Number, default: 0 },
   likes: { type: Number, default: 0 },
