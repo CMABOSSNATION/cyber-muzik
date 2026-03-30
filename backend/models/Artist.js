@@ -31,6 +31,10 @@ const ArtistSchema = new mongoose.Schema({
     type: String,
     default: ""
   },
+  mobileNumber: {
+    type: String,
+    default: ""
+  },
   tracks: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'track'
