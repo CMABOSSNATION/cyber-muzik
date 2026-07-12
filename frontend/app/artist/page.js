@@ -1,9 +1,9 @@
 "use client";
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Audioplayer from "../../components/Audioplayer";
 
-export default function ArtistPage() {
+function ArtistContent() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const [artist, setArtist] = useState(null);
@@ -35,5 +35,13 @@ export default function ArtistPage() {
         <Audioplayer key={track._id || track.id} track={track} />
       ))}
     </div>
+  );
+}
+
+export default function ArtistPage() {
+  return (
+    <Suspense fallback={<div className="p-8 text-white bg-black min-h-screen">Loading...</div>}>
+      <ArtistContent />
+    </Suspense>
   );
 }
