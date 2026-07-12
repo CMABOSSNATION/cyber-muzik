@@ -1,0 +1,6 @@
+{
+  "name": "cyber-muzik-backend",
+  "main": "src/index.js",
+  "compatibility_date": "2026-07-12",
+  "compatibility_flags": ["nodejs_compat"]
+}
