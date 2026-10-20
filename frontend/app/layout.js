@@ -1,26 +1,29 @@
-import "./globals.css";
-import Navbar from "../components/Navbar";
+import './globals.css';
+import Navbar from '../components/Navbar';
+import PlayerBar from '../components/PlayerBar';
+import PlayerProvider from '../components/PlayerProvider';
 
 export const metadata = {
-  title: "CyberMuzik",
-  description: "Stream the future of music",
+  title: 'Cyber-Muzik',
+  description: 'Stream and discover independent music.',
+  manifest: '/manifest.json',
+  appleWebApp: { capable: true, title: 'Cyber-Muzik', statusBarStyle: 'black-translucent' },
 };
+
+export const viewport = { themeColor: '#e8640a' };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="manifest" href="/manifest.json"/>
-        <meta name="theme-color" content="#E8640A"/>
-        <meta name="apple-mobile-web-app-capable" content="yes"/>
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
-        <meta name="apple-mobile-web-app-title" content="CyberMuzik"/>
-        <link rel="apple-touch-icon" href="/icon-512.png"/>
-        <meta name="mobile-web-app-capable" content="yes"/>
+        <link rel="apple-touch-icon" href="/icon-512.png" />
       </head>
-      <body className="bg-black text-white">
-        <Navbar/>
-        <main className="min-h-screen">{children}</main>
+      <body className="bg-ink-950 text-zinc-100 antialiased">
+        <PlayerProvider>
+          <Navbar />
+          <main className="min-h-screen pb-28">{children}</main>
+          <PlayerBar />
+        </PlayerProvider>
       </body>
     </html>
   );

@@ -1,63 +1,65 @@
-"use client";
+'use client';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import { useSession } from '../lib/session';
+import Cover from './Cover';
+
+const LINKS = [
+  { href: '/', label: 'Home' },
+  { href: '/charts', label: 'Charts' },
+  { href: '/artists', label: 'Artists' },
+];
 
 export default function Navbar() {
-  const [artist, setArtist] = useState(null);
-  const [deferredPrompt, setDeferredPrompt] = useState(null);
-  const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+  const { ready, artist } = useSession();
+  const [installPrompt, setInstallPrompt] = useState(null);
 
   useEffect(() => {
-    setMounted(true);
-    try {
-      const stored = localStorage.getItem("artist");
-      if (stored) setArtist(JSON.parse(stored));
-    } catch {}
-    const handler = (e) => { e.preventDefault(); setDeferredPrompt(e); };
-    window.addEventListener('beforeinstallprompt', handler);
-    return () => window.removeEventListener('beforeinstallprompt', handler);
+    const onPrompt = (e) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+    };
+    window.addEventListener('beforeinstallprompt', onPrompt);
+    return () => window.removeEventListener('beforeinstallprompt', onPrompt);
   }, []);
 
-  const handleInstall = async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      setDeferredPrompt(null);
-    } else {
-      alert('To install: tap ⋮ in Chrome → Add to Home Screen');
-    }
+  const install = async () => {
+    installPrompt.prompt();
+    await installPrompt.userChoice;
+    setInstallPrompt(null);
   };
 
   return (
-    <nav style={{position:"sticky",top:0,zIndex:100,background:"rgba(5,5,10,0.97)",backdropFilter:"blur(20px)",borderBottom:"1px solid rgba(232,100,10,0.2)"}}>
-      <div style={{maxWidth:"680px",margin:"0 auto",padding:"0 16px",display:"flex",alignItems:"center",height:"50px",gap:"2px"}}>
-        <Link href="/" style={{fontWeight:"900",fontSize:"1.1rem",textDecoration:"none",marginRight:"auto",letterSpacing:"-0.02em"}}>
-          <span style={{color:"#00e5ff"}}>CYBER</span><span style={{color:"#fff"}}>MUZIK</span>
+    <header className="sticky top-0 z-30 border-b border-ink-700 bg-ink-950/95 backdrop-blur">
+      <div className="mx-auto flex h-14 max-w-2xl items-center gap-4 px-4">
+        <Link href="/" className="mr-auto text-base font-bold tracking-tight text-white">
+          Cyber<span className="text-brand">Muzik</span>
         </Link>
-        <Link href="/" style={{padding:"6px 10px",fontSize:"0.65rem",fontWeight:"600",letterSpacing:"0.08em",textTransform:"uppercase",color:"rgba(255,255,255,0.45)",textDecoration:"none"}}>Home</Link>
-        <Link href="/charts" style={{padding:"6px 10px",fontSize:"0.65rem",fontWeight:"600",letterSpacing:"0.08em",textTransform:"uppercase",color:"rgba(255,255,255,0.45)",textDecoration:"none"}}>Charts</Link>
-        <Link href="/news" style={{padding:"6px 10px",fontSize:"0.65rem",fontWeight:"600",letterSpacing:"0.08em",textTransform:"uppercase",color:"rgba(255,255,255,0.45)",textDecoration:"none"}}>News</Link>
-        {mounted && (
-          artist ? (
-            <Link href="/artist/dashboard" style={{marginLeft:"6px",display:"flex",alignItems:"center",gap:"7px",background:"rgba(255,255,255,0.07)",border:"1px solid rgba(232,100,10,0.4)",padding:"5px 12px",borderRadius:"99px",textDecoration:"none"}}>
-              {artist.profilePhoto
-                ? <img src={artist.profilePhoto} alt={artist.username||""} style={{width:"22px",height:"22px",borderRadius:"50%",objectFit:"cover"}}/>
-                : <div style={{width:"22px",height:"22px",borderRadius:"50%",background:"linear-gradient(135deg,#E8640A,#D4006A)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"0.6rem"}}>🎵</div>
-              }
-              <span style={{color:"#fff",fontSize:"0.72rem",fontWeight:"700"}}>{artist.username||""}</span>
+        <nav className="flex items-center gap-4 text-sm">
+          {LINKS.map((l) => (
+            <Link key={l.href} href={l.href} className={pathname === l.href ? 'text-white' : 'text-zinc-400 hover:text-white'}>
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+        {installPrompt && (
+          <button onClick={install} className="text-sm text-zinc-400 hover:text-white">
+            Install
+          </button>
+        )}
+        {ready &&
+          (artist ? (
+            <Link href="/artist/dashboard" aria-label="Your dashboard">
+              <Cover src={artist.profilePhoto} label={artist.username} className="h-8 w-8 rounded-full text-xs" />
             </Link>
           ) : (
-            <Link href="/login" style={{marginLeft:"6px",background:"linear-gradient(135deg,#E8640A,#D4006A)",color:"#fff",padding:"6px 14px",borderRadius:"99px",fontSize:"0.68rem",fontWeight:"800",textDecoration:"none"}}>
-              SIGN IN
+            <Link href="/login" className="rounded-lg bg-brand px-3 py-1.5 text-sm font-semibold text-white hover:bg-brand-dark">
+              Sign in
             </Link>
-          )
-        )}
+          ))}
       </div>
-      <div style={{maxWidth:"680px",margin:"0 auto",padding:"0 16px 8px"}}>
-        <button onClick={handleInstall} style={{display:"flex",alignItems:"center",gap:"5px",background:"linear-gradient(135deg,#E8640A,#D4006A)",color:"#fff",padding:"4px 12px",borderRadius:"99px",fontSize:"0.65rem",fontWeight:"800",border:"none",cursor:"pointer"}}>
-          ⬇ Download App
-        </button>
-      </div>
-    </nav>
+    </header>
   );
 }

@@ -1,20 +1,14 @@
-# 🎵 Cyber-Muzik
+# Cyber-Muzik
 
-A modern, full-stack music streaming platform featuring user authentication, library management, and a seamless global audio player.
+A music platform for independent artists. Listeners stream, like and download tracks. Artists sign up, upload music and manage a profile.
 
-## 🚀 Features
-* **Persistent Audio Player:** Listen while you browse using `PlayerContext`.
-* **User Library:** Save tracks and manage playlists.
-* **Dynamic Search:** Find your favorite artists and tracks instantly.
-* **Secure Auth:** Middleware-protected routes for personalized experiences.
+- `frontend/` Next.js static site, deployed on Cloudflare
+- `backend-workers/` Cloudflare Worker API (Hono), Supabase Postgres for data, Cloudflare R2 for audio and images
 
-## 📂 Tech Stack
-* **Frontend:** Next.js, React Context API, Tailwind CSS
-* **Backend:** Node.js, Express, MongoDB
-* **Security:** JWT Authentication & Middleware
+## Frontend
 
-## 🛠️ Installation & Setup
+Set `NEXT_PUBLIC_API_URL` to the Worker URL as a build variable, then `npm install` and `npm run build`. The static site is written to `out/`.
 
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/your-username/cyber-muzik.git](https://github.com/your-username/cyber-muzik.git)
+## Backend
+
+See `backend-workers/README.md`.

@@ -2,8 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: black;
-  color: white;
+@layer components {
+  .input {
+    @apply w-full rounded-lg border border-ink-600 bg-ink-800 px-3.5 py-3 text-sm text-white placeholder:text-zinc-500 focus:border-brand focus:outline-none;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-medium text-zinc-400;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply bg-brand text-white hover:bg-brand-dark;
+  }
+  .btn-ghost {
+    @apply border border-ink-600 text-zinc-200 hover:bg-ink-800;
+  }
+  .card {
+    @apply rounded-xl border border-ink-700 bg-ink-900;
+  }
+  .page {
+    @apply mx-auto w-full max-w-2xl px-4 py-6;
+  }
+  .notice-error {
+    @apply rounded-lg border border-red-500/30 bg-red-500/10 px-3.5 py-3 text-sm text-red-300;
+  }
 }
-
