@@ -28,7 +28,7 @@ app.use('/api/*', async (c, next) => {
   const missing = REQUIRED.filter((name) => !c.env[name]);
   if (missing.length) {
     console.error('Missing configuration:', missing.join(', '));
-    return c.json({ success: false, error: 'Server is not configured.' }, 500);
+    return c.json({ success: false, error: 'Server is not configured. Missing: ' + missing.join(', ') }, 500);
   }
   await next();
 });
